@@ -8,5 +8,26 @@
     <caption>Carte du restaurant</caption>
     <tbody>
         <!-- Code HTML à écrire -->
+		<?php
+//		var_dump($productList);
+
+		//Tools::pre($productList);
+		Tools::pre($wwwUrl);
+		?>
+		<ul>
+		<?php foreach ($productList as $product): ?>
+			<li>
+				<article>
+					<h3><?= $product['name'] ?></h3>
+					<p><?= $product['description'] ?></p>
+					<p><?= Tools::getPrettyPrice($product['priceHT']) ?></p>
+					<img src="<?= $wwwUrl ?>/images/meals/<?=  $product['image'] ?>">
+				</article>
+			</li>
+		<?php endforeach ?>
+		</ul>
+
+		ça va bien
+
     </tbody>
 </table>

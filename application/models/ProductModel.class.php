@@ -3,7 +3,7 @@
 
  class ProductModel {
 
-	public function getAllProducts() {
+	public static function getAllProducts() {
 
 		$db = new Database();
 
