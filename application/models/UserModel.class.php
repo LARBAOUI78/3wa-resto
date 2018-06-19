@@ -40,4 +40,15 @@
 
 		return $db->queryOne($sql, $params);
 	}
+
+	public static function getUserById($id) {
+
+		$db = new Database();
+
+		$sql = "SELECT * FROM user WHERE id = ?";
+
+		$params = [$id];
+
+		return $db->queryOne($sql, $params);
+	}
 }

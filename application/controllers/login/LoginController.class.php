@@ -39,19 +39,10 @@ class LoginController
             return ['errorMessage' => "Mot passe incorrect"]; 
         } 
 
-        $_SESSION['user_id'] = $user['id'];
+
+        $userSession = new UserSession();
+        $userSession->connect($user);
         
-
         $http->redirectTo('');
-        // VIctoire je suis identifié
-
-
-
-    	/*
-    	 * Méthode appelée en cas de requête HTTP POST
-    	 *
-    	 * L'argument $http est un objet permettant de faire des redirections etc.
-    	 * L'argument $formFields contient l'équivalent de $_POST en PHP natif.
-    	 */
     }
 }

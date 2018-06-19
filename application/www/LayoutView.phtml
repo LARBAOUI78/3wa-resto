@@ -34,7 +34,21 @@
 <!-- Interface utilisateur -->
 <nav class="user-interface">
     <ul class="link-list">
-        <!-- Code HTML/PHP à écrire -->
+        <?php
+        $userSession = new UserSession();
+        ?>
+        <?php if ($userSession->isConnected()): ?>
+            <?php
+                $user = $userSession->getUser();
+            ?>
+            Bonjour, <?= $user['firstname'] ?>
+
+        <?php else: ?>
+            
+            <a href="<?= $requestUrl ?>/login">Se connecter</a>
+            
+        <?php endif ?>
+        
     </ul>
 </nav>
 
