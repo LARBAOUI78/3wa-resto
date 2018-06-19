@@ -1,1 +1,14 @@
-Login
+<h3>Identifiez-vous</h3>
+
+<?php if (isset($errorMessage)): ?>
+<div>
+	<?= $errorMessage ?>
+</div>
+<?php endif; ?>
+<form action="" method="POST">
+<label>email<input type="text" name="email"></label>
+<label>Mot de passe<input type="text" name="password"></label>
+<button>envoie</button>
+</form>
+
+

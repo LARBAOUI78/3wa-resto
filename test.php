@@ -1,10 +1,8 @@
 <?php
 
-$listVariables = ['name' => 'bob', 'age' => 18];
 
-var_dump($listVariables);
+$timestamp = mktime(12, 0, 0);
 
-extract($listVariables);
+var_dump($timestamp);
 
-var_dump($name);
-var_dump($age);
+echo date('H:i', $timestamp);

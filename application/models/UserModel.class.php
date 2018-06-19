@@ -15,7 +15,7 @@
 		}
 
 
-		$user['password'] = crypt($user['password'], 'abc');
+		$user['password'] = crypt($user['password'], 'rl');
 
 
 		$db = new Database();
@@ -26,5 +26,18 @@
 		";
 
 		$db->executeSql($sql, $user);
+	}
+
+
+
+	public static function getUserByEmail($email) {
+
+		$db = new Database();
+
+		$sql = "SELECT * FROM user WHERE email = ?";
+
+		$params = [$email];
+
+		return $db->queryOne($sql, $params);
 	}
 }

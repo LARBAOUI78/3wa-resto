@@ -14,6 +14,39 @@ class LoginController
 
     public function httpPostMethod(Http $http, array $formFields)
     {
+
+        if ( empty($formFields['email'])) {
+            throw new Exception("email empty");
+        }
+
+        if ( empty($formFields['password'])) {
+            throw new Exception("password empty");
+        }
+
+
+        $email = $formFields['email'];
+        $password = $formFields['password'];
+
+        $user = UserModel::getUserByEmail($email);
+
+        if (empty($user)) {
+            return ['errorMessage' => "Email inconnu"];
+        }
+
+        $passwordEncrypted = crypt($password, 'rl');
+
+        if ($passwordEncrypted != $user['password']) {
+            return ['errorMessage' => "Mot passe incorrect"]; 
+        } 
+
+        $_SESSION['user_id'] = $user['id'];
+        
+
+        $http->redirectTo('');
+        // VIctoire je suis identifié
+
+
+
     	/*
     	 * Méthode appelée en cas de requête HTTP POST
     	 *
