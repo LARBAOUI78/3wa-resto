@@ -1,0 +1,21 @@
+<h2>Commande</h2>
+
+<div class="box-add-article">
+	<label>
+		Produits
+		<select>
+			<?php foreach ($productList as $product): ?>
+				<option value="<?= $product['id'] ?>"><?= $product['name']?></option>
+			<?php endforeach ?>
+		</select>
+	</label>
+
+	<div class="product-info">
+	</div>
+</div>
+
+
+<div class="box-cart">
+</div>
+
+<script src="<?= $wwwUrl ?>/js/order.js"></script>
