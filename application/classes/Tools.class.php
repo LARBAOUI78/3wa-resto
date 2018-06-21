@@ -12,7 +12,7 @@ class Tools {
 		echo "</pre>";
 	}
 
-	public static function getPrettyPrice($priceHT) {
-		return number_format(Tools::getPriceTTC($priceHT), 2, ',', ' ') . "€ TTC";
+	public static function getPrettyPrice($price) {
+		return number_format($price, 2, ',', ' ') . "€ TTC";
 	}
 }

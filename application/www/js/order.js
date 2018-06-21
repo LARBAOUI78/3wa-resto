@@ -23,4 +23,39 @@ $('select').on('change', function () {
 	});
 });
 
+
 $('select').trigger('change');
+
+
+$('#btn-add').on('click', function () {
+	var quantity = $("#quantity").val();
+	var productId = $('select').val();
+
+	console.log('quantity', quantity, 'product', productId);
+
+	var url = getRequestUrl() + '/cart';
+
+	var params = {};
+	params.id = productId;
+	params.quantity = quantity;
+
+	console.log(params);
+
+
+	$.post(url, params, function (html) {
+		$('.box-cart').html(html);
+	});
+});
+
+
+function loadCart() {
+	// load cart
+	var url = getRequestUrl() + '/cart';
+
+	$.get(url, function (html) {
+		$('.box-cart').html(html);
+	});	
+}
+
+loadCart();
+
