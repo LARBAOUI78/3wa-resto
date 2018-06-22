@@ -47,4 +47,12 @@ class Cart {
     	return count($_SESSION['cart']);
     }
 
+    static function remove($productId) {
+    	$cart = $_SESSION['cart'];
+
+    	unset($cart[$productId]);
+
+    	$_SESSION['cart'] = $cart;
+    }
+
 }
