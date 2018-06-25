@@ -4,8 +4,12 @@ class Cart {
 
 	static function init() {
 		if (empty($_SESSION['cart'])) {
-			$_SESSION['cart'] = [];	
+			self::reset();
 		}
+	}
+
+	static function reset() {
+		$_SESSION['cart'] = [];	
 	}
 
 	static function add($productId, $quantity) {

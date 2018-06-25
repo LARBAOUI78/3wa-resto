@@ -23,7 +23,11 @@ class Database
 
 	public function executeSql($sql, array $values = array())
 	{
+		Tools::log($sql);
+		Tools::log($values);
+
 		$query = $this->pdo->prepare($sql);
+
 
 		$query->execute($values);
 

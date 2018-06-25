@@ -10,6 +10,10 @@ class UserSession {
 		 return UserModel::getUserById($_SESSION['user_id']);
 	}
 
+	function getUserId() {
+		return $_SESSION['user_id'];
+	}
+
 	function isConnected() {
 
 		if (empty($_SESSION['user_id'])) {
