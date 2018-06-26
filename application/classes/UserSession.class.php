@@ -10,6 +10,12 @@ class UserSession {
 		 return UserModel::getUserById($_SESSION['user_id']);
 	}
 
+	function getUserRole() {
+		$user = $this->getUser();
+
+		return $user['role'];
+	}
+
 	function getUserId() {
 		return $_SESSION['user_id'];
 	}

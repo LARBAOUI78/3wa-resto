@@ -40,5 +40,62 @@ TXT;
 		return $orderId;
 	}
 
+	public static function getOrderById($id, $withDetails = false) {
+
+		$db = new Database();
+
+		$sql = "SELECT * FROM `order` WHERE id = ?";
+
+		$params = [$id];
+
+		$order = $db->queryOne($sql, $params);
+
+		if ($withDetails) {
+
+			$sql = "
+				SELECT * 
+				FROM orderline 
+				JOIN product ON product.id = orderline.product_id
+				WHERE order_id = ?
+			";
+
+			$params = [$id];
+
+			$orderLines = $db->query($sql, $params);
+
+			$order['orderLines'] = $orderLines;
+
+
+			$sql = "
+				SELECT * 
+				FROM user 
+				WHERE id = ?
+			";
+
+			$params = [];
+			$params[] = $order['user_id'];
+
+			$user = $db->queryOne($sql, $params);
+
+			$order['user'] = $user;
+		}
+
+		return $order;
+	}
+
+	static public function setPaidStatus($orderId) {
+
+		$sql =<<<TXT
+	UPDATE `order` SET status = 'PAID' WHERE id = ?
+TXT;
+
+		$db = new Database();
+
+		$params = [];
+		$params[] = $orderId;
+
+		$db->executeSql($sql, $params);
+	}
+
 	
 }

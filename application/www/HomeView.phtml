@@ -4,30 +4,18 @@
 
 
 <!-- Liste des aliments -->
-<table class="generic-table meal-list">
-    <caption>Carte du restaurant</caption>
-    <tbody>
-        <!-- Code HTML à écrire -->
-		<?php
-//		var_dump($productList);
+<div id="page-home">
+    	
+	<?php foreach ($productList as $product): ?>
+	
+		<article>
+			<h3><?= $product['name'] ?></h3>
+			<p><?= $product['description'] ?></p>
+			<p><?= Tools::getPrettyPrice($product['priceHT']) ?></p>
+			<img src="<?= $wwwUrl ?>/images/meals/<?=  $product['image'] ?>">
+		</article>
 
-		//Tools::pre($productList);
-		Tools::pre($wwwUrl);
-		?>
-		<ul>
-		<?php foreach ($productList as $product): ?>
-			<li>
-				<article>
-					<h3><?= $product['name'] ?></h3>
-					<p><?= $product['description'] ?></p>
-					<p><?= Tools::getPrettyPrice($product['priceHT']) ?></p>
-					<img src="<?= $wwwUrl ?>/images/meals/<?=  $product['image'] ?>">
-				</article>
-			</li>
-		<?php endforeach ?>
-		</ul>
-
-		ça va bien
-
-    </tbody>
-</table>
+	<?php endforeach ?>
+	
+	<div style="clear:both"></div>
+</div>

@@ -1,0 +1,55 @@
+<?php
+$user = $order['user'];
+$orderLines = $order['orderLines'];
+$totalPrice = 0;
+?>
+
+<div>
+
+	Prenom: <?= $user['firstname']?><br>
+	Nom: <?= $user['lastname']?><br>
+</div>
+
+<div>
+	Commandé le: <?= Tools::getFormattedDate($order['created_at']) ?>
+</div>
+
+
+
+<table class="generic-table meal-list">
+	<?php foreach ($orderLines as $orderLine): ?>
+		<?php
+			$totalLine = $orderLine['priceHT'] * $orderLine['quantity'];
+			$totalPrice += $totalLine; 
+		?>
+		<tr>
+			<td><img src="<?= $wwwUrl ?>/images/meals/<?= $orderLine['image'] ?>"></td>
+			<td><?= $orderLine['name'] ?></td>
+			<td><?= $orderLine['quantity'] ?></td>
+			<td><?= Tools::getPrettyPrice($orderLine['priceHT']) ?></td>
+			<td><?= Tools::getPrettyPrice($totalLine) ?></td>
+		</tr>
+	<?php endforeach ?>
+	<tr>
+		<td colspan="3"></td>
+		<td>Total Price</td>
+		<td><?= Tools::getPrettyPrice($totalPrice) ?></td>
+	</tr>
+	<tr>
+		<td colspan="3"></td>
+		<td>TVA 20%</td>
+		<td><?= Tools::getPrettyPrice($totalPrice * 0.2) ?></td>
+	</tr>
+	<tr>
+		<td colspan="3"></td>
+		<td>Total Price TTC</td>
+		<td><?= Tools::getPrettyPrice($totalPrice * 1.2) ?></td>
+	</tr>
+
+</table>
+
+
+<form method="post">
+	<input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+	<button type="submit">Payer</button>
+</form>
