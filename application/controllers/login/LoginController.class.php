@@ -42,6 +42,10 @@ class LoginController
 
         $userSession = new UserSession();
         $userSession->connect($user);
+
+        $bag = new FlashBag();
+
+        $bag->add("Merci de vous être connecté");
         
         $http->redirectTo('');
     }

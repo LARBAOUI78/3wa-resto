@@ -56,6 +56,16 @@
     </ul>
 </nav>
 
+<?php $bag = new FlashBag(); ?>
+
+<?php if ($bag->hasMessages()): ?>
+<ul class="box-messages">
+    <?php foreach ($bag->fetchMessages() as $message): ?>
+        <li><?= $message ?></li>
+    <?php endforeach ?>
+</ul>
+<?php endif ?>
+
 <main>
     <!-- Affichage du template lié à la vue -->
     <?php include $this->viewData['template'] ?>
